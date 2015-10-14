@@ -1,0 +1,18 @@
+<table class="ui celled padded table">
+    <thead>
+    <tr><th class="single line">Thumbnail</th><th>Title</th><th>Links</th></tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="movie in favoriteMoviesList">
+        <td>
+            <img src="{{movie.thumbnail}}">
+        </td>
+        <td class="single line">
+            <h2>{{movie.title}}</h2>
+        </td>
+        <td>
+            <h2><a href="{{movie.link}}">{{movie.link}}</a></h2>
+        </td>
+    </tr>
+    </tbody>
+</table>

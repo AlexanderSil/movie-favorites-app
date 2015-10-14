@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+    <changeSet id="1" author="Alex">
+        <comment>Create favorites table</comment>
+        <createTable tableName="favorites" schemaName="public">
+            <column name="id" type="BIGINT" autoIncrement="true"/>
+            <!--<column name="id_favorite" type="BIGINT" autoIncrement="true">-->
+                <!--<constraints nullable="false"/>-->
+            <!--</column>-->
+            <column name="title" type="VARCHAR(256)"/>
+            <column name="link" type="VARCHAR(256)"/>
+        </createTable>
+        <addPrimaryKey tableName="favorites" constraintName="favorites_pkey"
+                       columnNames="id" />
+    </changeSet>
+
+    <changeSet id="2" author="Alex">
+        <comment>Create movies table</comment>
+        <createTable tableName="movies" schemaName="public">
+            <column name="id" type="BIGINT" autoIncrement="true"/>
+            <column name="id_movie" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="favorite_group_id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(256)"/>
+            <column name="thumbnail_url" type="VARCHAR(256)"/>
+            <column name="link" type="VARCHAR(256)"/>
+        </createTable>
+        <addPrimaryKey tableName="movies" constraintName="movies_pkey"
+                       columnNames="id" />
+
+        <addForeignKeyConstraint constraintName="movies_fk"
+                                 baseTableName="movies" baseColumnNames="favorite_group_id"
+                                 referencedTableName="favorites" referencedColumnNames="id" onDelete="CASCADE" />
+    </changeSet>
+
+    <changeSet id="3" author="Alex">
+        <createSequence incrementBy="1"
+                        maxValue="9223372036854775807"
+                        minValue="1"
+                        schemaName="public"
+                        sequenceName="favorites_seq_id"
+                        startValue="1"/>
+    </changeSet>
+
+    <changeSet id="4" author="Alex">
+        <createSequence incrementBy="1"
+                        maxValue="9223372036854775807"
+                        minValue="1"
+                        schemaName="public"
+                        sequenceName="movies_seq_id"
+                        startValue="1"/>
+    </changeSet>
+
+    </databaseChangeLog>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="angularApp">
+<head>
+    <title></title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="/css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/css/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+    <script src="/js/angularModules/angular.js"></script> <!--todo: uncomment minified version for production-->
+    <script src="/js/angularModules/angular-route.js"></script>
+    <script src="/js/angularModules/angular-resource.js"></script>
+    <script src="/js/angularModules/angular-cookies.js"></script>
+    <script src="/js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="/js/angularModules/ng-table.js"></script>
+    <script src="/js/semantic/semantic.js"></script>
+    <script src="/js/semantic/semantic.min.js"></script>
+
+    <script type="text/javascript" src="/js/services.js"></script>
+    <script type="text/javascript" src="/js/controllers.js"></script>
+
+</head>
+<body ng-controller="MainController">
+<main id="panel">
+    <div class="ui divider"></div>
+
+    <div class="ui grid">
+        <div class="four wide column">
+            <a href="/#/favorites">
+                <img  class="header-logo"  src="/images/logo.jpeg" alt="" />
+            </a>
+            <div class="ui vertical buttons">
+                <a href="/#/search">
+                    <button class="ui button">SEARCH MOVIES</button>
+                </a>
+                <div class="ui divider"></div>
+                <a href="/#/favorites">
+                    <button class="ui button">VIEW FAVORITES</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="nine wide column">
+            <div ng-view>[CONTENT WILL BE HERE]</div>
+        </div>
+        <div class="three wide column">
+            <p></p>
+        </div>
+    </div>
+</main>
+</body>
+</html>

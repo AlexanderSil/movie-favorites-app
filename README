@@ -1,0 +1,3 @@
+mvn install
+mvn jetty:run
+Port: http://localhost:8088/

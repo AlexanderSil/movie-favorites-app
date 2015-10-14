@@ -1,0 +1,20 @@
+<button class="ui button" ng-click="createFavorite()">Create Favorite</button>
+<table class="ui celled padded table">
+    <tbody>
+    <tr ng-repeat="favorite in favoritesList">
+        <td>
+            <div ng-click="showFavoriteMovies(favorite.id)" class="button"><h1>{{favorite.title}}</h1></div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="ui small modal" id="createFavorite">
+    <div class="header"><h3>New Favorite</h3></div>
+    <div class="form-group">
+        <input ng-model="FavoriteTitle" type="text" placeholder="Title">
+    </div>
+    <div class="actions">
+        <div class="ui right floated blue approve button">Ok</div>
+        <div class="ui right labeled blue deny button">Cancel</div>
+    </div>
+</div>

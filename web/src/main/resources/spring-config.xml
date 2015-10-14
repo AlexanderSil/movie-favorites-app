@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:cxf="http://cxf.apache.org/core" xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:repository="http://www.springframework.org/schema/data/repository" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+            http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd http://www.springframework.org/schema/data/jpa/spring-jpa-1.2.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/repository
+           http://www.springframework.org/schema/data/repository/spring-repository.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+
+       default-autowire="byName">
+
+    <context:property-placeholder location="classpath*:META-INF/database.properties"/>
+
+    <tx:annotation-driven />
+    <context:annotation-config />
+    <context:component-scan base-package="com.movie.favorite"/>
+
+    <jaxrs:server address="/">
+        <jaxrs:serviceBeans>
+            <bean class="com.movie.favorite.impl.MovieWebServiceImpl" autowire="byType"/>
+            <bean class="com.movie.favorite.impl.FavoritesWebServiceImpl" autowire="byType"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper"/>
+
+    <bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider">
+        <property name="mapper" ref="objectMapper"/>
+    </bean>
+
+    <bean id="cxf" class="org.apache.cxf.bus.spring.SpringBus"/>
+</beans>

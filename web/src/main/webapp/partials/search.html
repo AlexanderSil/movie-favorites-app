@@ -1,0 +1,46 @@
+<div>
+    <div class="ui icon input">
+        <input ng-model="maxResult" type="text" placeholder="Max Result">
+    </div>
+</div>
+<div>
+    <div class="ui icon input">
+        <input ng-model="query" type="text" placeholder="Search...">
+        <button class="ui button" ng-click="search()">SEARCH</button>
+    </div>
+</div>
+
+<table class="ui celled padded table">
+    <thead>
+    <tr><th class="single line">Thumbnail</th><th>Title</th><th>Add Favorite</th></tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="movie in moviesList">
+        <td>
+            <img src="{{movie.thumbnail}}">
+        </td>
+        <td class="single line">
+            <h2>{{movie.title}}</h2>
+        </td>
+        <td>
+            <button ng-click="addToFavorite(movie.movieId)" class="ui button"><h1>ADD</h1></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="ui small modal" id="addMovieToFavorite">
+    <div class="header"><h3>Select favorite group</h3></div>
+    <div class="form-group">
+        <div class="radio listFavoriteCheckBox" ng-repeat="favorite in favoritesList">
+            <label>
+                {{favorite.title}}
+                <input type="radio" name="chickenEgg" value={{favorite.id}} ng-click="selectFavorite(favorite.id)">
+            </label>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui right floated blue approve button">Ok</div>
+        <div class="ui right labeled blue deny button">Cancel</div>
+    </div>
+</div>
